@@ -1,0 +1,646 @@
+/* =========================================
+   Reset & base
+   ========================================= */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  color: #1a1a1a;
+  background-color: #fafaf8;
+  line-height: 1.7;
+}
+
+/* =========================================
+   Navbar
+   ========================================= */
+.cv-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.125rem 2.5rem;
+  background-color: transparent;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cv-nav.scrolled {
+  background-color: #ffffff;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.07);
+}
+
+.cv-nav-logo {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  transition: color 0.3s ease;
+  z-index: 201;
+}
+
+.cv-nav.scrolled .cv-nav-logo {
+  color: #1a1a1a;
+}
+
+.cv-nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.cv-nav-links a {
+  font-size: 13px;
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.cv-nav-links a:hover {
+  color: #ffffff;
+}
+
+.cv-nav.scrolled .cv-nav-links a {
+  color: #5f5e5a;
+}
+
+.cv-nav.scrolled .cv-nav-links a:hover {
+  color: #1a1a1a;
+}
+
+.cv-nav-cta {
+  padding: 8px 18px;
+  background-color: #7ecec4 !important;
+  color: #fff !important;
+  border-radius: 8px;
+  font-size: 13px !important;
+  font-weight: 500;
+  transition: opacity 0.2s !important;
+}
+
+.cv-nav-cta:hover {
+  opacity: 0.85;
+}
+
+.cv-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 201;
+}
+
+.cv-hamburger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
+  transform-origin: center;
+}
+
+.cv-nav.scrolled .cv-hamburger span {
+  background-color: #1a1a1a;
+}
+
+.cv-hamburger.active span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.cv-hamburger.active span:nth-child(2) { opacity: 0; }
+.cv-hamburger.active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* =========================================
+   Hero — full width
+   ========================================= */
+.cv-hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 480px;
+  max-height: 700px;
+  overflow: hidden;
+}
+
+.cv-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  display: block;
+}
+
+.cv-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.62) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 3rem 2.5rem;
+}
+
+.cv-tag {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.72);
+  margin-bottom: 0.75rem;
+}
+
+.cv-hero h1 {
+  font-size: 36px;
+  font-weight: 500;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 0.625rem;
+}
+
+.cv-hero p {
+  font-size: 15px;
+  color: rgba(255,255,255,0.8);
+  max-width: 400px;
+  line-height: 1.6;
+}
+
+/* =========================================
+   Layout
+   ========================================= */
+.cv-wrapper {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 2rem 3rem;
+}
+
+/* =========================================
+   Sections
+   ========================================= */
+.cv-section {
+  padding: 3rem 0;
+  border-bottom: 0.5px solid rgba(0,0,0,0.08);
+}
+
+.cv-section:last-child {
+  border-bottom: none;
+}
+
+.cv-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #888780;
+  margin-bottom: 0.75rem;
+}
+
+.cv-section h2 {
+  font-size: 22px;
+  font-weight: 500;
+  color: #1a1a1a;
+  margin-bottom: 0.875rem;
+  line-height: 1.3;
+}
+
+.cv-section > p {
+  font-size: 15px;
+  color: #5f5e5a;
+  max-width: 540px;
+  line-height: 1.75;
+}
+
+/* =========================================
+   Nosotros — dos columnas
+   ========================================= */
+.cv-about {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 3rem;
+  align-items: center;
+}
+
+.cv-about-text h2 {
+  font-size: 22px;
+  font-weight: 500;
+  color: #1a1a1a;
+  margin-bottom: 0.875rem;
+  line-height: 1.3;
+}
+
+.cv-about-text p {
+  font-size: 15px;
+  color: #5f5e5a;
+  line-height: 1.75;
+}
+
+.cv-about-photo img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 12px;
+  display: block;
+}
+
+.cv-about-photo-caption {
+  font-size: 11px;
+  color: #888780;
+  text-align: center;
+  margin-top: 8px;
+  letter-spacing: 0.03em;
+}
+
+/* =========================================
+   Quote
+   ========================================= */
+.cv-quote {
+  border-left: 2px solid rgba(0,0,0,0.12);
+  padding-left: 1.25rem;
+  margin-top: 1.75rem;
+}
+
+.cv-quote p {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  color: #1a1a1a;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.cv-quote span {
+  display: block;
+  font-size: 12px;
+  color: #888780;
+  margin-top: 6px;
+}
+
+/* =========================================
+   Fondos diferenciados de sección
+   ========================================= */
+.cv-section--tierra {
+  background-color: #f5f0e8;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.cv-section--agua {
+  background-color: #eaf5f3;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.cv-section--tierra .cv-eyebrow,
+.cv-section--agua .cv-eyebrow {
+  color: #7a7670;
+}
+
+.cv-section--agua .cv-feature-icon {
+  background-color: #d6ede9;
+  border-color: rgba(0,0,0,0.06);
+}
+
+/* =========================================
+   Cards — full width dentro de su sección
+   ========================================= */
+.cv-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 1.75rem;
+}
+
+.cv-card {
+  border: 0.5px solid rgba(0,0,0,0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.cv-card-img {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.cv-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.cv-card:hover .cv-card-img img {
+  transform: scale(1.04);
+}
+
+.cv-card-img--placeholder {
+  background-color: #f1efe8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cv-card-img--placeholder span {
+  font-size: 12px;
+  color: #888780;
+}
+
+.cv-card-body {
+  padding: 1.125rem 1.25rem 1.375rem;
+}
+
+.cv-card-body h3 {
+  font-size: 15px;
+  font-weight: 500;
+  color: #1a1a1a;
+  margin-bottom: 5px;
+}
+
+.cv-card-body p {
+  font-size: 13px;
+  color: #5f5e5a;
+  line-height: 1.55;
+}
+
+/* =========================================
+   Features
+   ========================================= */
+.cv-features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 1.75rem;
+}
+
+.cv-feature {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.cv-feature-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: #f1efe8;
+  border: 0.5px solid rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 18px;
+}
+
+.cv-feature-text h4 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1a1a;
+  margin-bottom: 3px;
+}
+
+.cv-feature-text p {
+  font-size: 13px;
+  color: #5f5e5a;
+  line-height: 1.55;
+}
+
+/* =========================================
+   CTA
+   ========================================= */
+.cv-cta {
+  display: flex;
+  gap: 12px;
+  margin-top: 1.75rem;
+}
+
+.cv-btn-primary {
+  display: inline-block;
+  padding: 10px 22px;
+  background-color: #1a1a1a;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.cv-btn-primary:hover { opacity: 0.82; }
+
+.cv-btn-ghost {
+  display: inline-block;
+  padding: 10px 22px;
+  background: transparent;
+  color: #5f5e5a;
+  border: 0.5px solid rgba(0,0,0,0.2);
+  border-radius: 8px;
+  font-size: 13px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.cv-btn-ghost:hover { background: #f1efe8; }
+
+/* =========================================
+   Footer — full width, fondo oscuro
+   ========================================= */
+.cv-footer {
+  background-color: #2e2b25;
+  width: 100%;
+}
+
+.cv-footer-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.cv-footer-brand .cv-footer-logo {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #f0ece4;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.5rem;
+}
+
+.cv-footer-brand p {
+  font-size: 12px;
+  color: #888278;
+  line-height: 1.7;
+}
+
+.cv-footer-social-label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #888278;
+  margin-bottom: 0.75rem;
+}
+
+.cv-footer-social-links {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.cv-footer-social-links a {
+  color: #a09a92;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.cv-footer-social-links a:hover { color: #f0ece4; }
+
+.cv-footer-credit {
+  text-align: right;
+  align-self: flex-end;
+}
+
+.cv-footer-credit em {
+  font-size: 12px;
+  font-style: italic;
+  color: #5a5650;
+  font-family: Georgia, "Times New Roman", serif;
+  letter-spacing: 0.02em;
+}
+
+/* =========================================
+   WhatsApp flotante
+   ========================================= */
+.cv-whatsapp {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 300;
+  width: 52px;
+  height: 52px;
+  background-color: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(37,211,102,0.38);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cv-whatsapp:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(37,211,102,0.48);
+}
+
+/* =========================================
+   Responsive
+   ========================================= */
+@media (max-width: 640px) {
+
+  /* Navbar */
+  .cv-nav {
+    padding: 1rem 1.25rem;
+    position: fixed;
+  }
+
+  /* Hamburger visible */
+  .cv-hamburger {
+    display: flex;
+  }
+
+  /* Dropdown compacto anclado debajo del nav fijo */
+  .cv-nav-links {
+    display: none;
+    position: fixed;
+    top: 56px; /* altura del nav fijo */
+    left: 0;
+    right: 0;
+    background-color: #ffffff;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    z-index: 199;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+    border-top: 0.5px solid rgba(0,0,0,0.07);
+  }
+
+  .cv-nav-links.open {
+    display: flex;
+  }
+
+  .cv-nav-links li {
+    border-bottom: 0.5px solid rgba(0,0,0,0.06);
+  }
+
+  .cv-nav-links a {
+    display: block;
+    padding: 0.875rem 1.5rem !important;
+    font-size: 14px !important;
+    color: #1a1a1a !important;
+  }
+
+  /* Botón Reservar dentro del dropdown */
+  .cv-nav-links li:last-child {
+    padding: 0.75rem 1.5rem;
+    border-bottom: none;
+  }
+
+  .cv-nav-cta {
+    display: block !important;
+    text-align: center;
+    padding: 10px 18px !important;
+    font-size: 14px !important;
+    border-radius: 8px;
+  }
+
+  /* Hero */
+  .cv-hero { max-height: 560px; }
+  .cv-hero h1 { font-size: 26px; }
+  .cv-hero-overlay { padding: 2rem 1.5rem; }
+
+  /* Wrapper */
+  .cv-wrapper { padding: 0 1.25rem 2rem; }
+
+  /* Cards: una columna en mobile */
+  .cv-cards { grid-template-columns: 1fr; }
+
+  /* Features: una columna */
+  .cv-features { grid-template-columns: 1fr; }
+
+  /* Nosotros */
+  .cv-about { grid-template-columns: 1fr; gap: 2rem; }
+  .cv-about-photo { order: -1; }
+  .cv-about-photo img { height: 280px; }
+
+  /* Footer */
+  .cv-footer-inner {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .cv-footer-credit {
+    text-align: left;
+    align-self: flex-start;
+  }
+
+  /* WhatsApp */
+  .cv-whatsapp { bottom: 20px; right: 20px; width: 48px; height: 48px; }
+}
